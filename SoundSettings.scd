@@ -75,7 +75,7 @@ Ndef(\writing).release.play
 
 // SynthDefs
 (
-b = ~material1[2];  // change stems here
+// b = ~material1[2];  // change stems here
 
 SynthDef(\buffer1, { |out, bufnum, start, trig, time, amp, rate = 1|
 	var sig = PlayBuf.ar(2, bufnum,
@@ -132,8 +132,8 @@ SynthDef(\buffer5, { |out, bufnum, start, trig, time, amp, rate = 1|
 
 )
 
-//check the original stem here
-b.play;
+// check the original stem here
+// b.play;
 
 
 
@@ -148,9 +148,9 @@ TempoClock.tempo = originalTempo;
 
 p = Pbind(
 	\instrument, \buffer1,
-	\bufnum, b,
+	\bufnum, ~material1[2],
 	\amp, 0.5,
-	\start, start * b.sampleRate,
+	\start, start * ~material1[2].sampleRate,
 	\dur, beatsInLoop,
 	\time, Pkey(\dur) / Pfunc { thisThread.clock.tempo },
 	\rate, Pfunc { thisThread.clock.tempo / originalTempo }
@@ -159,9 +159,9 @@ p = Pbind(
 q = Pn( Pfindur(8,
 	Pbind(
 		\instrument, \buffer2,
-		\bufnum, b,
+		\bufnum, ~material1[3],
 		\amp, 0.2,
-		\start, start * b.sampleRate,
+		\start, start * ~material1[3].sampleRate,
 		\dur, beatsInLoop,
 		\time, Pkey(\dur) / Pfunc { thisThread.clock.tempo },
 		\rate, Pfunc { thisThread.clock.tempo / originalTempo }
@@ -169,9 +169,9 @@ q = Pn( Pfindur(8,
 
 r = Pbind(
 	\instrument, \buffer3,
-	\bufnum, b,
+	\bufnum, ~material1[4],
 	\amp, 0.2,
-	\start, start * b.sampleRate,
+	\start, start * ~material1[4].sampleRate,
 	\dur, beatsInLoop,
 	\time, Pkey(\dur) / Pfunc { thisThread.clock.tempo },
 	\rate, Pfunc { thisThread.clock.tempo / originalTempo }
@@ -182,9 +182,9 @@ w = Pn(
 		8,
 		Pbind(
 			\instrument, \buffer4,
-			\bufnum, b,
+			\bufnum, ~material1[1],
 			\amp, 0.4,
-			\start, start * b.sampleRate,
+			\start, start * ~material1[1].sampleRate,
 			\dur, beatsInLoop,
 			\time, Pkey(\dur) / Pfunc { thisThread.clock.tempo },
 			\rate, Pfunc { thisThread.clock.tempo / originalTempo }
@@ -203,20 +203,22 @@ originalTempo = beatsInLoop / (end - start);
 
 TempoClock.tempo = originalTempo;
 
-x = Pbind(
+~effect1 = Pbind(
 	\instrument, \buffer4,
-	\bufnum, b,
+	\bufnum, ~material1[2],
 	\amp, 0.8,
 	\sustain, 10,
 	\legato, 5,
 	\timeOffset, Pseq([0, 1.5, 3], inf),
-	\start, start * b.sampleRate,
+	\start, start * ~material1[2].sampleRate,
 	\dur, beatsInLoop,
 	\time, Pkey(\dur) / Pfunc { thisThread.clock.tempo },
 	\rate, Pfunc { thisThread.clock.tempo / originalTempo }
-).play;
+);
 
 )
+
+
 
 x.free;
 release
