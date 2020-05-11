@@ -71,15 +71,31 @@ var nextFunction = {
 */
 
 // we can only use number in Pseq?
+
+~function1 = {"A function outside of the scope stored in an envirnmental variable".postln; 40 + 40;};
 (
-var sequence = Pseq([0,1,2,3]);
+
+var multiLineFunction = {
+	"This is a test for multi line function".postln;
+	100 + 100;
+	Synth(\buffer1);
+};
+
+var sequence = Pseq([
+	{"Start!".postln;},
+	{x = ~material[1].play},
+	{x.stop; ~effect1.play},
+	~function1,
+	multiLineFunction,
+	{"End!".postln;}
+]);
 
 var stream = sequence.asStream;
 
 var nextFunction = {
 	"Go!".postln;
 	// Synth(\mei, [\freq, stream.next]);
-	~material1[stream.next].play;
+	stream.next.value;
 };
 
 var window = Window("Colors", 300@300);
