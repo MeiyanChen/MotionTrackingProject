@@ -1,0 +1,1 @@
+"hi-there.scd".loadRelative;
