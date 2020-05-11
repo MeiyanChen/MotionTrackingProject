@@ -1,3 +1,4 @@
+//Sound Settings
 //load the audio file
 
 (
@@ -41,9 +42,9 @@ c.set(0.5);
 
 
 //play it raw
-~material1.at(0).play;
-~material1.at(1).play;
-~material1.at(2).play;
+~material1[0].play;
+~material1[1].play;
+~material1[2].play;
 ~material1[3].play;
 ~material1[4].play;
 ~material1[5].play;
@@ -72,10 +73,9 @@ Ndef(\writing,
 Ndef(\writing).release.play
 
 
-//phasing --------------------------------------------
-//if i want to use different audio file how to release the first one ? by using Ndef?
+// SynthDefs
 (
-b = ~material1[2];
+b = ~material1[2];  // change stems here
 
 SynthDef(\buffer1, { |out, bufnum, start, trig, time, amp, rate = 1|
 	var sig = PlayBuf.ar(2, bufnum,
@@ -132,8 +132,12 @@ SynthDef(\buffer5, { |out, bufnum, start, trig, time, amp, rate = 1|
 
 )
 
+//check the original stem here
 b.play;
 
+
+
+//phasing/ looping one of the stems we choose from the synthdef ´buffer1-4
 (
 
 var start = 0, end = 13,
@@ -191,6 +195,8 @@ w = Pn(
 )
 )
 
+
+// another effect to use synthdef
 (var start = 0, end = 13,
 beatsInLoop = 4,
 originalTempo = beatsInLoop / (end - start);
@@ -198,7 +204,7 @@ originalTempo = beatsInLoop / (end - start);
 TempoClock.tempo = originalTempo;
 
 x = Pbind(
-	\instrument, \buffer5,
+	\instrument, \buffer4,
 	\bufnum, b,
 	\amp, 0.8,
 	\sustain, 10,
