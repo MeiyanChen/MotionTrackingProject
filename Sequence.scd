@@ -71,14 +71,15 @@ var nextFunction = {
 */
 
 // we can only use number in Pseq?
-
+(
 var sequence = Pseq([0,1,2,3]);
 
 var stream = sequence.asStream;
 
 var nextFunction = {
 	"Go!".postln;
-	Synth(\mei, [\freq, sequence.next]);
+	// Synth(\mei, [\freq, stream.next]);
+	~material1[stream.next].play;
 };
 
 var window = Window("Colors", 300@300);
