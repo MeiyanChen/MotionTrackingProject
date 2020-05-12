@@ -1,29 +1,4 @@
 //Sound Settings
-//load the audio file
-
-(
-~material1 = Array.new;
-~folder1 = PathName.new("/Volumes/Samsung_T5/HFM Karlsruhe/Projects/Motion tracking project/Material1Ochestra/Bounces/");
-
-
-~folder1.entries.do({
-	arg path;
-	~material1 = ~material1.add(Buffer.read(s, path.fullPath));
-});
-
-
-
-
-~material2 = Array.new;
-~folder2 = PathName.new("/Volumes/Samsung_T5/HFM Karlsruhe/Projects/Motion tracking project/PencilSound/");
-
-
-~folder2.entries.do({
-	arg path;
-	~material2 = ~material2.add(Buffer.read(s, path.fullPath));
-});
-)
-
 
 ( // create Control Busses
 c = Bus.control(s, 1); // X from 0 to 1
@@ -39,21 +14,6 @@ c.set(0.5);
 	Out.kr(d, MouseY.kr(0, 1));
 }.play;
 )
-
-
-//play it raw
-~material1[0].play;
-~material1[1].play;
-~material1[2].play;
-~material1[3].play;
-~material1[4].play;
-~material1[5].play;
-~material1[6].play;
-~material1[7].play;
-
-~material2[0].play;
-~material2[1].play;
-
 
 // Pencil Sound / writing -----------------------------------
 
@@ -230,64 +190,3 @@ x = { var src;
 	Splay.ar(src,In.kr(d, 1), 0.2, In.kr(d, 1));
 }.play;
 )
-
-(
-OSCdef(\qtm_result, {|msg|
-	("QTM Reply: " ++ msg[1]).postln
-}, "/qtm/cmd_res");
-
-n = NetAddr("192.168.1.192", 22225);
-n.sendMsg("/qtm", "Connect", NetAddr.langPort);
-)
-
-
-n.sendMsg("/qtm", "StreamFrames", "AllFrames", "3D");
-
-// Stop Streaming:
-n.sendMsg("/qtm", "StreamFrames", "Stop");
-
-OSCRecorderGUI();
-
-// Connect to Qualisis-----------------------------------------------
-(
-// \oben has to be a unique identifier for an OSCdef, does not need to reflect the labels name
-OSCdef(\oben, {|msg, time, addr, recvPort|
-
-	var coords = msg[1..3];
-	var center = [-30, -80, 1350];
-	var isWriting = 0.0;
-	var dimensions = [1000, 1000];
-	var x, y;
-
-	coords = coords - center;
-
-	(coords[1] < 0).if {
-		isWriting = 1.0;
-	};
-
-	x = coords[0].linlin(dimensions[0]/2 * -1, dimensions[0]/2, 0, 1);
-	y = coords[2].linlin(dimensions[1]/2 * -1, dimensions[1]/2, 0, 1);
-
-
-	// uncomment to dump OSC messages
-
-	(isWriting > 0.0).if ({
-		[x, y].postln;
-	});
-
-	// takes absolute values of room coordinates and scales the values
-	c.set(x);
-	d.set(y);
-	e.set(isWriting);
-	// x.set(\mdepth, msg[3].abs.linlin(0, 2000, 0, 16));
-
-	/*
-	// also use the angles
-	x.set(\amp, msg[4].abs.linexp(0, 180, 0.05, 1));
-	x.set(\pan, msg[5].abs.linlin(0, 180, -1, 1));
-	x.set(\ffreq, msg[6].abs.linlin(0, 180, 200, 20000));
-	*/
-
-}, "/qtm/3d/PEN_TIP"); // 6DOF name here
-)
-//  paper position 
