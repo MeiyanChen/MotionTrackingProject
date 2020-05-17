@@ -1,3 +1,4 @@
+
 (
 OSCdef(\qtm_result, {|msg|
 	("QTM Reply: " ++ msg[1]).postln
@@ -13,7 +14,8 @@ n.sendMsg("/qtm", "StreamFrames", "AllFrames", "3D");
 // Stop Streaming:
 n.sendMsg("/qtm", "StreamFrames", "Stop");
 
-OSCRecorderGUI();
+
+// OSCRecorderGUI();
 
 // Connect to Qualisis-----------------------------------------------
 (
@@ -57,4 +59,4 @@ OSCdef(\oben, {|msg, time, addr, recvPort|
 
 }, "/qtm/3d/PEN_TIP"); // 6DOF name here
 )
-//  paper position 
+//  paper position
