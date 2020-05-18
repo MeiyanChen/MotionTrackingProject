@@ -25,9 +25,9 @@ var nextFunction = {
 
 var sequence = Pseq([
 	{"Start!".postln;},
-	{~material1[0].play},
-	{~creep1.play},
-	{~material1[1].play},
+	{x = ~material1[0].play},
+	{x.stop; x = ~creep1.play},
+	{x.stop; ~material1[1].play},
 	{~creep2.play},
 	{~material1[2].play},
 	{~creep3.play},
