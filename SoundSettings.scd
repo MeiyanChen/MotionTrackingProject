@@ -1,6 +1,6 @@
-//Sound Settings
-"Load_AudioFiles.scd".loadRelative;
+(
  // create Control Busses
+
 c = Bus.control(s, 1); // X from 0 to 1
 d = Bus.control(s, 1); // Y from 0 to 1
 e = Bus.control(s, 1); // Writing (1) or not Writing (0)
@@ -16,23 +16,24 @@ e = Bus.control(s, 1); // Writing (1) or not Writing (0)
 	Out.kr(d, MouseY.kr(0, 1));
 }.value;
 
+)
+
 
 // Pencil Sound / writing -----------------------------------
 
-
-Ndef(\writing,
+(
+SynthDef(\writing,
 	{ arg out=0, bufnum=0;
 		var amp = In.kr(e, 1);
 		var trig = Impulse.ar(4, [0, In.kr(c, 1)], 0.2);
 		Out.ar(out,
-			PlayBuf.ar(2,~material2[0], amp * BufRateScale.kr(~material2[0]), trig, In.kr(d, 1).linlin(0, 1, 0, BufFrames.kr(~material2[0])), 1)
+			PlayBuf.ar(2, ~pencilwriting[0], amp * BufRateScale.kr(~pencilwriting[0]), trig, In.kr(d, 1).linlin(0, 1, 0, BufFrames.kr(~pencilwriting[0])), 1)
 		)
-	}
-);
-
-//Ndef(\writing).play
+	}).add;
+)
 
 
+(
 // SynthDefs
 
 //b = ~material1[2];  // change stems here
@@ -90,12 +91,12 @@ SynthDef(\buffer5, { |out, bufnum, start, trig, time, amp, rate = 1|
 }).add;
 
 
-
+)
 // check the original stem here
 // b.play;
 
 
-
+(
 //phasing/ looping one of the stems we choose from the synthdef ´buffer1-4
 {
 var start = 0, end = 13,
@@ -106,55 +107,56 @@ TempoClock.tempo = originalTempo;
 
 ~creep1 = Pbind(
 	\instrument, \buffer4,
-	\bufnum, ~material1[0],
+	\bufnum, ~loops[0],
 	\amp, 0.5,
-	\start, start * ~material1[0].sampleRate,
+	\start, start * ~loops[0].sampleRate,
 	\dur, beatsInLoop,
 	\time, Pkey(\dur) / Pfunc { thisThread.clock.tempo },
 	\rate, Pfunc { thisThread.clock.tempo / originalTempo }
-) /* .value(quant: [8, 4]); */
+); /* .value(quant: [8, 4]); */
 
-~creep2 = Pn( Pfindur(8,
+
+~creep2 = Pn( Pfindur(16,
 	Pbind(
 		\instrument, \buffer2,
-		\bufnum, ~material1[1],
+		\bufnum, ~loops[1],
 		\amp, 0.2,
-		\start, start * ~material1[1].sampleRate,
+		\start, start * ~loops[1].sampleRate,
 		\dur, beatsInLoop,
 		\time, Pkey(\dur) / Pfunc { thisThread.clock.tempo },
 		\rate, Pfunc { thisThread.clock.tempo / originalTempo }
-),inf) /* .value(quant: [8, 4]); */
+),inf); /* .value(quant: [8, 4]); */
+
 
 ~creep3 = Pbind(
 	\instrument, \buffer3,
-	\bufnum, ~material1[2],
+	\bufnum, ~loops[2],
 	\amp, 0.2,
-	\start, start * ~material1[2].sampleRate,
+	\start, start * ~loops[2].sampleRate,
 	\dur, beatsInLoop,
 	\time, Pkey(\dur) / Pfunc { thisThread.clock.tempo },
 	\rate, Pfunc { thisThread.clock.tempo / originalTempo }
-) /* .value(quant: [4, 3.5]) */;
+); /* .value(quant: [4, 3.5]) */
 
 ~creep4 = Pn(
 	Pfindur(
 		8,
 		Pbind(
 			\instrument, \buffer4,
-			\bufnum, ~material1[3],
+			\bufnum, ~loops[3],
 			\amp, 0.4,
-			\start, start * ~material1[3].sampleRate,
+			\start, start * ~loops[3].sampleRate,
 			\dur, beatsInLoop,
 			\time, Pkey(\dur) / Pfunc { thisThread.clock.tempo },
 			\rate, Pfunc { thisThread.clock.tempo / originalTempo }
 		),
 		inf
-	) /* .value(quant: [4, 2]) */;
+	) /* .value(quant: [4, 2]) */
 ))
 }.value;
 
+)
 
-
-p.play;
 ~creep3.play;
 
 
@@ -168,12 +170,12 @@ TempoClock.tempo = originalTempo;
 
 ~effect1 = Pbind(
 	\instrument, \buffer4,
-	\bufnum, ~material1[2],
+	\bufnum, ~loops[2],
 	\amp, 0.8,
 	\sustain, 10,
 	\legato, 5,
 	\timeOffset, Pseq([0, 1.5, 3], inf),
-	\start, start * ~material1[2].sampleRate,
+	\start, start * ~loops[2].sampleRate,
 	\dur, beatsInLoop,
 	\time, Pkey(\dur) / Pfunc { thisThread.clock.tempo },
 	\rate, Pfunc { thisThread.clock.tempo / originalTempo }
@@ -184,12 +186,10 @@ TempoClock.tempo = originalTempo;
 
 
 
-x.free;
-
 // the end
 {
-x = { var src;
-	src = PlayBuf.ar(2, ~material1[7], 1, (Impulse.kr(XLine.kr(0.1, 400, 30))));
+~end = { var src;
+	src = PlayBuf.ar(2, ~loops[7], 1, (Impulse.kr(XLine.kr(0.1, 400, 30))));
 	Splay.ar(src,In.kr(d, 1), 0.2, In.kr(d, 1));
 }.play;
 }.value;

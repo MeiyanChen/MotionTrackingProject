@@ -24,6 +24,7 @@
 )
 
 
+/*
 play it raw
 ~loops[0].play;  //1.1
 ~loops[1].play;  //1.2
