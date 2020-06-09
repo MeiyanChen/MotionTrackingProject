@@ -26,15 +26,15 @@
 
 /*
 play it raw
-~loops[0].play;  //1.1
-~loops[1].play;  //1.2
-~loops[2].play;  //1.3
-~loops[3].play;  //2
-~loops[4].play;  //3.1
-~loops[5].play;  //3.2
-~loops[6].play;  //3.3
-~loops[7].play;  //5
-~loops[8].play;  //5
+~loops[0].play;  //1.1   6   bar
+~loops[1].play;  //1.2   6   bar
+~loops[2].play;  //1.3   6   bar
+~loops[3].play;  //2     9   bar
+~loops[4].play;  //3.1   10  bar
+~loops[5].play;  //3.2   9   bar
+~loops[6].play;  //3.3   9.5 bar
+~loops[7].play;  //5     9   bar
+~loops[8].play;  //5     8   bar
 
 
 
