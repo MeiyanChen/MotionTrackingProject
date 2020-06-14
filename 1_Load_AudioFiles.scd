@@ -23,7 +23,6 @@
 });
 )
 
-
 /*
 play it raw
 ~loops[0].play;  //1.1   6   bar
@@ -38,14 +37,24 @@ play it raw
 
 
 
-~pencilwriting[0].play; //Quick
-~pencilwriting[1].play; //Quick
-~pencilwriting[2].play; //Quick
-~pencilwriting[3].play; //Quick
-~pencilwriting[4].play; //Slow
-~pencilwriting[5].play; //Slow
-~pencilwriting[6].play; //Slow
-~pencilwriting[7].play; //Slow
-~pencilwriting[8].play; //Slow
+~pencilwriting[0].play; //Mono Quick
+~pencilwriting[1].play; //Mono Quick
+~pencilwriting[2].play; //Mono Quick
+~pencilwriting[3].play; //Mono Quick
+~pencilwriting[4].play; //Mono Slow
+~pencilwriting[5].play; //Mono Slow
+~pencilwriting[6].play; //Mono Slow
+~pencilwriting[7].play; //Mono Slow
+~pencilwriting[8].play; //Mono Slow
+
+~pencilwriting[9].play;  //Stereo Quick
+~pencilwriting[10].play; //Stereo Quick
+~pencilwriting[11].play; //Stereo Quick
+~pencilwriting[12].play; //Stereo Quick
+~pencilwriting[13].play; //Stereo Slow
+~pencilwriting[14].play; //Stereo Slow
+~pencilwriting[15].play; //Stereo Slow
+~pencilwriting[16].play; //Stereo Slow
+~pencilwriting[17].play; //Stereo Slow
 
 
