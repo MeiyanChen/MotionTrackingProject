@@ -1,4 +1,4 @@
-"Load_AudioFiles.scd".loadRelative;
+"1_Load_AudioFiles.scd".loadRelative;
 
 
 (
@@ -11,7 +11,7 @@ b = [
 
 )
 
-b.choose.duration
+// b.choose.duration
 
 
 (
@@ -46,13 +46,9 @@ Tdef(\pencilFast, {
 Tdef(\pencilFast).play;
 Tdef(\pencilFast).stop;
 
-// most funnest Ugens in SuperCollider!
-GrainBuf
-
-s.boot;
 
 
 
 
-x = Synth(\buf_grainPencil, [\sndbuf, b, \envbuf, -1])
+// x = Synth(\buf_grainPencil, [\sndbuf, b, \envbuf, -1])
 
