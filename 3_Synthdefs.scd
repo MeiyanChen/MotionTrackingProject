@@ -1,23 +1,6 @@
 "1_Load_AudioFiles.scd".loadRelative;
 
 (
-c = [
-~loops[0],
-~loops[1],
-~loops[2],
-~loops[3],
-~loops[4],
-~loops[5],
-~loops[6],
-~loops[7],
-~loops[8]
-
-];
-)
-
-(
-
-(
 SynthDef(\bufferPlayer, {|buffer=0, out=0|
 	var sig = PlayBuf.ar(2, buffer, doneAction:2);
 	Out.ar(out, sig);
@@ -50,7 +33,7 @@ Synth(\effect2, [\in, f]);
 (
 Pbind(
 	\instrument, \bufferPlayer,
-	\buffer, Pindex(c, Pfunc({~which}), inf),
+	\buffer, Pindex(~loops, Pfunc({~which}), inf),
 	\out, f,
 	\dur, 12,
 ).play;

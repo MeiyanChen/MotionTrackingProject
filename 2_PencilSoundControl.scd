@@ -1,16 +1,6 @@
 "1_Load_AudioFiles.scd".loadRelative;
 
 
-(
-b = [
-	~pencilwriting[0], //Mono Quick
-	~pencilwriting[1], //Mono Quick
-	~pencilwriting[2], //Mono Quick
-	~pencilwriting[3] //Mono Quick
-    ]
-
-)
-
 // b.choose.duration
 
 
@@ -34,8 +24,8 @@ SynthDef(\buf_grainPencil, { |out, gate = 1, amp = 1, sndbuf, envbuf|
 (
 Tdef(\pencilFast, {
 	inf.do {
-		var sndbuf = b.choose;
-	Synth(\buf_grainPencil, [\sndbuf, b, \envbuf, -1]);
+		var sndbuf = ~pencilwriting.choose;
+		Synth(\buf_grainPencil, [\sndbuf, sndbuf, \envbuf, -1]);
 		sndbuf.duration.wait;
 	}
 });
@@ -46,6 +36,7 @@ Tdef(\pencilFast, {
 Tdef(\pencilFast).play;
 Tdef(\pencilFast).stop;
 
+s.scope
 
 
 
