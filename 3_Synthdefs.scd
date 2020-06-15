@@ -9,8 +9,9 @@ SynthDef(\bufferPlayer, {|buffer=0, out=0|
 
 SynthDef(\effect1, {|in, out|
 	var sig = In.ar(in, 2);
-	sig = sig * SinOsc.ar(400, 0, MouseX.kr(0, 1));
-	Out.ar(out, sig);
+	var line = Line.kr(0, 1, 60);
+	var fx = sig * SinOsc.ar(400, 0, MouseX.kr(0, 1));
+	Out.ar(out, (sig * (1.0-line)) + (fx * line));
 }).add;
 
 
@@ -39,4 +40,45 @@ Pbind(
 ).play;
 )
 
-s.plotTree
+(
+
+// master score
+Tdef(\loopSequence, {
+
+	f = Bus.audio(s, 2);
+
+	~effect = Synth(\effect1, [\in, f]);
+
+	~keepLooping = true;
+	{~keepLooping}.while ({
+		"loop1_1".postln;
+		Synth(\bufferPlayer, [\buffer, ~loops[0], \out, f]);
+		(6*4*0.5).wait;
+	});
+
+	// ~effect.free;
+	// ~effect = Synth(\effect2, [\in, f]);
+
+	~keepLooping = true;
+	{~keepLooping}.while ({
+		"loop1_2".postln;
+		Synth(\bufferPlayer, [\buffer, ~loops[1], \out, f]);
+		(6*4*0.5).wait;
+	});
+
+
+	~keepLooping = true;
+	{~keepLooping}.while ({
+		"loop1_3".postln;
+		Synth(\bufferPlayer, [\buffer, ~loops[2], \out, f]);
+		(6*4*0.5).wait;
+	});
+
+	"end".postln;
+
+});
+)
+
+Tdef(\loopSequence).play
+
+~keepLooping = false;
