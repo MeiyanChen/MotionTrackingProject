@@ -1,5 +1,8 @@
 "1_Load_AudioFiles.scd".loadRelative;
-
+Server.default.boot;
+Server.default.options.outDevice;
+s.options.sampleRate_(44100);
+s.options.memSize_(2.pow(20));
 
 // b.choose.duration
 
@@ -18,7 +21,7 @@ SynthDef(\buf_grainPencil, { |out, amp = 1, sndbuf, envbuf|
     // use mouse x to control panning
 	trig = Impulse.ar(delta * 2000);
 	pan = MouseX.kr(-1, 1);
-	dur = MouseY.kr(1, 2) * 0.5 ; // interesting to play with
+	dur = MouseY.kr(1, 2) * 0.1 ; // interesting to play with
 
 	env = EnvGen.kr(
         Env([0, 1, 0], [1, 1], \sin, 1),
@@ -39,7 +42,6 @@ Tdef(\pencilFast, {
 	}
 });
 )
-
 
 
 Tdef(\pencilFast).play;

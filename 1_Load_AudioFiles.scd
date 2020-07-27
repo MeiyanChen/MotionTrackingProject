@@ -1,8 +1,32 @@
 //load the audio file
+~out = 0;
+~path = PathName(thisProcess.nowExecutingPath).parentPath++"buffers/";
+
+
+//3. define piece-specific functions
+~makeBuffers = {
+	b = Dictionary.new;
+	PathName(~path).entries.do{
+		arg subfolder;
+		b.add(
+			subfolder.folderName.asSymbol ->
+			Array.fill(
+				subfolder.entries.size,
+				{
+					arg i;
+					Buffer.read(s, subfolder.entries[i].fullPath);
+				}
+			)
+		);
+	};
+};
+
+b[\Loops][2];
 
 (
+
 ~loops = Array.new;
-~folder1 = PathName.new("/Users/meiyanchen/Desktop/MotionTrackingProject/GitRepo/Audio/Loops/");
+~folder1 = PathName(thisProcess.nowExecutingPath).parentPath++ "Buffers/Loops/";
 
 
 ~folder1.entries.do({
@@ -14,7 +38,7 @@
 
 
 ~pencilwriting = Array.new;
-~folder2 = PathName.new("/Users/meiyanchen/Desktop/MotionTrackingProject/GitRepo/Audio/PencilWriting/");
+~folder2 = PathName(thisProcess.nowExecutingPath).parentPath++ "Buffers/PencilWriting/";
 
 
 ~folder2.entries.do({
@@ -22,6 +46,7 @@
 	~pencilwriting = ~pencilwriting.add(Buffer.read(s, path.fullPath));
 });
 )
+
 
 /*
 play it raw

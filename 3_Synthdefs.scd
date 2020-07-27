@@ -1,16 +1,17 @@
 "1_Load_AudioFiles.scd".loadRelative;
 
 (
+(
 SynthDef(\bufferPlayer, {|buffer=0, out=0|
 	var sig = PlayBuf.ar(2, buffer, doneAction:2);
 	Out.ar(out, sig);
 }).add;
 
 
-SynthDef(\effect1, {|in, out|
+SynthDef(\effect1, {|in, out, freq = 400|
 	var sig = In.ar(in, 2);
 	var line = Line.kr(0, 1, 60);
-	var fx = sig * SinOsc.ar(400, 0, MouseX.kr(0, 1));
+	var fx = sig * SinOsc.ar(freq, 0, MouseX.kr(0, 1));
 	Out.ar(out, (sig * (1.0-line)) + (fx * line));
 }).add;
 
@@ -24,6 +25,7 @@ SynthDef(\effect2, {|in, out|
 );
 
 
+
 (
 f = Bus.audio(s, 2);
 Synth(\effect2, [\in, f]);
@@ -34,7 +36,7 @@ Synth(\effect2, [\in, f]);
 (
 Pbind(
 	\instrument, \bufferPlayer,
-	\buffer, Pindex(~loops, Pfunc({~which}), inf),
+	\buffer, Pindex([\loops].bufnum, Pfunc({~which}), inf),
 	\out, f,
 	\dur, 12,
 ).play;
