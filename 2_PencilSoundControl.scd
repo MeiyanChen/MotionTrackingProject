@@ -1,10 +1,13 @@
+(
 "1_Load_AudioFiles.scd".loadRelative;
 Server.default.boot;
 Server.default.options.outDevice;
 s.options.sampleRate_(44100);
 s.options.memSize_(2.pow(20));
-
+)
 // b.choose.duration
+
+// Blackhole (successor to Soundflower)
 
 
 (

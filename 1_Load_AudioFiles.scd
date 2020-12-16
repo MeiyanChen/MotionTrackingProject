@@ -1,6 +1,7 @@
 //load the audio file
 ~out = 0;
-~path = PathName(thisProcess.nowExecutingPath).parentPath++"buffers/";
+/*
+~path = PathName(thisProcess.nowExecutingPath).parentPath++"Buffers/";
 
 
 //3. define piece-specific functions
@@ -21,12 +22,14 @@
 	};
 };
 
+~makeBuffers.value;
 b[\Loops][2];
+*/
 
 (
 
 ~loops = Array.new;
-~folder1 = PathName(thisProcess.nowExecutingPath).parentPath++ "Buffers/Loops/";
+~folder1 = PathName(PathName(thisProcess.nowExecutingPath).parentPath ++ "Buffers/Loops/");
 
 
 ~folder1.entries.do({
@@ -38,7 +41,7 @@ b[\Loops][2];
 
 
 ~pencilwriting = Array.new;
-~folder2 = PathName(thisProcess.nowExecutingPath).parentPath++ "Buffers/PencilWriting/";
+~folder2 = PathName(PathName(thisProcess.nowExecutingPath).parentPath++ "Buffers/PencilWriting/");
 
 
 ~folder2.entries.do({
@@ -46,7 +49,6 @@ b[\Loops][2];
 	~pencilwriting = ~pencilwriting.add(Buffer.read(s, path.fullPath));
 });
 )
-
 
 /*
 play it raw

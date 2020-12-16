@@ -11,7 +11,7 @@ SynthDef(\bufferPlayer, {|buffer=0, out=0|
 SynthDef(\effect1, {|in, out, freq = 400|
 	var sig = In.ar(in, 2);
 	var line = Line.kr(0, 1, 60);
-	var fx = sig * SinOsc.ar(freq, 0, MouseX.kr(0, 1));
+	var fx = sig * SinOsc.ar(freq, MouseY.kr(0, 2pi), MouseX.kr(0, 1));
 	Out.ar(out, (sig * (1.0-line)) + (fx * line));
 }).add;
 
@@ -36,7 +36,7 @@ Synth(\effect2, [\in, f]);
 (
 Pbind(
 	\instrument, \bufferPlayer,
-	\buffer, Pindex([\loops].bufnum, Pfunc({~which}), inf),
+	\buffer, Pindex([\Loops].bufnum, Pfunc({~which}), inf),
 	\out, f,
 	\dur, 12,
 ).play;
@@ -76,11 +76,61 @@ Tdef(\loopSequence, {
 		(6*4*0.5).wait;
 	});
 
+   ~keepLooping = true;
+		{~keepLooping}.while ({
+		"loop2".postln;
+		Synth(\bufferPlayer, [\buffer, ~loops[3], \out, f]);
+		(9*4*0.5).wait;
+	});
+
+	// ~effect.free;
+	// ~effect = Synth(\effect2, [\in, f]);
+
+	~keepLooping = true;
+	{~keepLooping}.while ({
+		"loop3_1".postln;
+		Synth(\bufferPlayer, [\buffer, ~loops[4], \out, f]);
+		(10*4*0.5).wait;
+	});
+
+
+	~keepLooping = true;
+	{~keepLooping}.while ({
+		"loop3_2".postln;
+		Synth(\bufferPlayer, [\buffer, ~loops[5], \out, f]);
+		(9*4*0.5).wait;
+	});
+
+	~keepLooping = true;
+		{~keepLooping}.while ({
+		"loop3_3".postln;
+		Synth(\bufferPlayer, [\buffer, ~loops[6], \out, f]);
+		(9.5*4*0.5).wait;
+	});
+
+	// ~effect.free;
+	// ~effect = Synth(\effect2, [\in, f]);
+
+	~keepLooping = true;
+	{~keepLooping}.while ({
+		"loop4".postln;
+		Synth(\bufferPlayer, [\buffer, ~loops[7], \out, f]);
+		(9*4*0.5).wait;
+	});
+
+
+	~keepLooping = true;
+	{~keepLooping}.while ({
+		"loop5".postln;
+		Synth(\bufferPlayer, [\buffer, ~loops[8], \out, f]);
+		(8*4*0.5).wait;
+	});
+
 	"end".postln;
 
 });
 )
 
-Tdef(\loopSequence).play
+Tdef(\loopSequence).play;
 
-~keepLooping = false;
+~keepLooping = false;//change stem
