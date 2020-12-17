@@ -16,9 +16,9 @@ SynthDef(\effect1, {|in, out, freq = 400|
 }).add;
 
 
-SynthDef(\effect2, {|in, out|
+SynthDef(\effect2, {|in, out, lowFreq=200, hiFreq=800|
 	var sig = In.ar(in, 2);
-	sig = sig * SinOsc.ar(MouseY.kr(200, 700), 0, MouseX.kr(0, 1));
+	sig = sig * SinOsc.ar(MouseY.kr(lowFreq, hiFreq), 0, MouseX.kr(0, 1));
 	Out.ar(out, sig);
 }).add;
 
@@ -48,15 +48,20 @@ Pbind(
 Tdef(\loopSequence, {
 
 	f = Bus.audio(s, 2);
+	// g = Bus.audio(s, 2);
 
-	~effect = Synth(\effect1, [\in, f]);
+	~effect = Synth(\effect2, [\in, f]);
+	// ~effect2 = Synth(\effect1, [\in, g]);
 
 	~keepLooping = true;
 	{~keepLooping}.while ({
 		"loop1_1".postln;
 		Synth(\bufferPlayer, [\buffer, ~loops[0], \out, f]);
+		// Synth(\bufferPlayer, [\buffer, ~loops[3], \out, g]);
 		(6*4*0.5).wait;
 	});
+	
+	~effect.set(\loFreq, 300);
 
 	// ~effect.free;
 	// ~effect = Synth(\effect2, [\in, f]);
