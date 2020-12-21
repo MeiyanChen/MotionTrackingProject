@@ -1,8 +1,5 @@
-(
-"1_Load_AudioFiles.scd".loadRelative;
-"3_Synthdefs.scd".loadRelative;
 //"4_OSC_Qualisis.scd".loadRelative;
-)
+"3_Synthdefs.scd".loadRelative;
 
 (
 
@@ -10,8 +7,12 @@
 Tdef(\loopSequence, {
 
 	f = Bus.audio(s, 2);
+	g = Bus.audio(s, 2);
+	h = Bus.audio(s, 2);
 
-	~effect = Synth(\effect1, [\in, f]); //
+	~effect1 = Synth(\effect1, [\in, f]);
+	//~effect2 = Synth(\effect2, [\in, g]);
+	//~effect3 = Synth(\effect3, [\in, h]);
 
 	~keepLooping = true;
 	{~keepLooping}.while ({
@@ -20,28 +21,29 @@ Tdef(\loopSequence, {
 		(6*4*0.5).wait;
 	});
 
-	// ~effect.free;
-	// ~effect = Synth(\effect2, [\in, f]);
+	 ~effect1.free;
+	 ~effect2 = Synth(\effect2, [\in, g]);
 
 	~keepLooping = true;
 	{~keepLooping}.while ({
 		"loop1_2".postln;
-		Synth(\bufferPlayer, [\buffer, ~loops[1], \out, f]);
+		Synth(\bufferPlayer, [\buffer, ~loops[1], \out, g]);
 		(6*4*0.5).wait;
 	});
 
-
+     ~effect2.free;
+	 ~effect3 = Synth(\effect2, [\in, h]);
 	~keepLooping = true;
 	{~keepLooping}.while ({
 		"loop1_3".postln;
-		Synth(\bufferPlayer, [\buffer, ~loops[2], \out, f]);
+		Synth(\bufferPlayer, [\buffer, ~loops[2], \out, h]);
 		(6*4*0.5).wait;
 	});
 
    ~keepLooping = true;
 		{~keepLooping}.while ({
 		"loop2".postln;
-		Synth(\bufferPlayer, [\buffer, ~loops[3], \out, f]);
+		Synth(\bufferPlayer, [\buffer, ~loops[3], \out, g]);
 		(9*4*0.5).wait;
 	});
 
@@ -59,14 +61,14 @@ Tdef(\loopSequence, {
 	~keepLooping = true;
 	{~keepLooping}.while ({
 		"loop3_2".postln;
-		Synth(\bufferPlayer, [\buffer, ~loops[5], \out, f]);
+		Synth(\bufferPlayer, [\buffer, ~loops[5], \out, g]);
 		(9*4*0.5).wait;
 	});
 
 	~keepLooping = true;
 		{~keepLooping}.while ({
 		"loop3_3".postln;
-		Synth(\bufferPlayer, [\buffer, ~loops[6], \out, f]);
+		Synth(\bufferPlayer, [\buffer, ~loops[6], \out, h]);
 		(9.5*4*0.5).wait;
 	});
 
@@ -76,7 +78,7 @@ Tdef(\loopSequence, {
 	~keepLooping = true;
 	{~keepLooping}.while ({
 		"loop4".postln;
-		Synth(\bufferPlayer, [\buffer, ~loops[7], \out, f]);
+		Synth(\bufferPlayer, [\buffer, ~loops[7], \out, g]);
 		(9*4*0.5).wait;
 	});
 
