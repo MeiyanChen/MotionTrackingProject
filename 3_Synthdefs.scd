@@ -16,7 +16,7 @@ SynthDef(\effect1, {|in, out, freq = 400|
 }).add;
 
 
-SynthDef(\effect2, {|in, out,lowFreq=200, hiFreq = 400|
+SynthDef(\effect2, {|in, out|
 	var sig, vib;
 	sig = In.ar(in, 2);
 	vib = BPF.kr(in, MouseX.kr(1, 100, 1), 0.3) * 10;
@@ -24,7 +24,7 @@ SynthDef(\effect2, {|in, out,lowFreq=200, hiFreq = 400|
 	Out.ar(out, sig);
 }).add;
 
-SynthDef(\effec3, { |in, out, lowFreq=100, hiFreq = 200 ,amp = 0.1|
+SynthDef(\effec3, { |in, out|
 	var sig, ctl;
 	sig = In.ar(in, 2);
 	ctl = HPF.kr(in, MouseX.kr(2, 200, 1));
