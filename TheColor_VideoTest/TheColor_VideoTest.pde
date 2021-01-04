@@ -8,6 +8,14 @@ String poem = "color";
 
 OscP5 oscP5;
 
+boolean isDrawing = false;
+float posX = 0.5;
+float posY = 0.5;
+
+PFont f;
+
+// https://processing.org/reference/createGraphics_.html
+
 /*
 n = NetAddr("127.0.0.1", 57150);
 
@@ -15,6 +23,10 @@ n.sendMsg("/poem", "Hello Mei!");
 n.sendMsg("/poem", "My name is Patrick!");
 n.sendMsg("/poem", "Bye!");
 n.sendMsg("/poem", "");
+
+n.sendMsg("/poemPos", 0, 0.3, 0.7); // no writing
+n.sendMsg("/poemPos", 1, 0.5, 0.2); // writing at  position 0.5/0.2
+
 */
 
 void setup() {
@@ -23,6 +35,7 @@ void setup() {
   myMovie.play();
   
   oscP5 = new OscP5(this,57150);
+  f = createFont("BrushScriptMT", 50);
 }
 
 void draw() {
@@ -30,12 +43,14 @@ void draw() {
   //tint(0,153,204);
   //stroke(random(100,180),random(100,180),random(100,180) ,20);
   //strokeWeight(10);
+  
   fill(random(100,180),random(80,150),random(1,150));
+  
   noStroke();
-  if (mousePressed == true) {
-   PFont f = createFont("BrushScriptMT", 50);
+  
+  if (isDrawing == true) {
    textFont(f);
-   text(poem, mouseX, mouseY);
+   text(poem, posX * width, posY * height);
   }
 }
 
@@ -54,5 +69,11 @@ void oscEvent(OscMessage theOscMessage) {
   
   if(theOscMessage.addrPattern().equals("/poem")) {
     poem = theOscMessage.get(0).stringValue();
+  }
+  
+  if(theOscMessage.addrPattern().equals("/poemPos")) {
+    isDrawing = theOscMessage.get(0).intValue() != 0;
+    posX = theOscMessage.get(1).floatValue();
+    posY = theOscMessage.get(2).floatValue();
   }
 }
