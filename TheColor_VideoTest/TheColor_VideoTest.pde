@@ -30,11 +30,11 @@ void draw() {
   //tint(0,153,204);
   //stroke(random(100,180),random(100,180),random(100,180) ,20);
   //strokeWeight(10);
-  fill(#0D98DB,20);
+  fill(random(100,180),random(80,150),random(1,150));
   noStroke();
   if (mousePressed == true) {
-   // ellipse(mouseX, mouseY,40, 40);
-   // ellipse(mouseX, mouseY, pmouseX, pmouseY);
+   PFont f = createFont("BrushScriptMT", 50);
+   textFont(f);
    text(poem, mouseX, mouseY);
   }
 }

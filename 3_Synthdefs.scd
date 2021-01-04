@@ -9,27 +9,27 @@ SynthDef(\bufferPlayer, {|buffer=0, out=0|
 
 
 SynthDef(\effect1, {|in, out, freq = 400|
-	var sig = In.ar(in, 2);
+	var source = In.ar(in, 2);
 	var line = Line.kr(0, 1, 60);
-	var fx = sig * SinOsc.ar(freq, MouseY.kr(0, 2pi), MouseX.kr(0, 1));
-	Out.ar(out, (sig * (1.0-line)) + (fx * line));
+	var fx = source * SinOsc.ar(freq, MouseY.kr(0, 2pi), MouseX.kr(0, 1));
+	Out.ar(out, (source * (1.0-line)) + (fx * line));
 }).add;
 
 
-SynthDef(\effect2, {|in, out|
-	var sig, vib;
-	sig = In.ar(in, 2);
+SynthDef(\effect2, {|in, out, wet|
+	var drySignal, wetSignal, vib;
+	drySignal = In.ar(in, 2);
 	vib = BPF.kr(in, MouseX.kr(1, 100, 1), 0.3) * 10;
-	sig = sig * SinOsc.ar(vib * 5 + 10) * 0.2;
-	Out.ar(out, sig);
+	wetSignal = drySignal * SinOsc.ar(vib * 5 + 10) * 0.2;
+	Out.ar(out, (drySignal *(1.0 - wet)) + (wetSignal *wet));
 }).add;
 
-SynthDef(\effec3, { |in, out|
-	var sig, ctl;
-	sig = In.ar(in, 2);
+SynthDef(\effec3, { |in, out,wet|
+	var drySignal, wetSignal, ctl;
+	drySignal = In.ar(in, 2);
 	ctl = HPF.kr(in, MouseX.kr(2, 200, 1));
-	sig = sig * SinOsc.ar(ctl * 5 + 10) * 0.1;
-    Out.ar(out, sig);
+	wetSignal = drySignal * SinOsc.ar(ctl * 5 + 10) * 0.1;
+    Out.ar(out, (drySignal *(1.0 - wet)) + (wetSignal *wet));
 }).add;
 );
 

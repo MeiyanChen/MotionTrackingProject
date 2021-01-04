@@ -32,7 +32,7 @@ Tdef(\loopSequence, {
 	});
 
      ~effect2.free;
-	 ~effect3 = Synth(\effect2, [\in, h]);
+	 ~effect3 = Synth(\effect3, [\in, h]);
 	~keepLooping = true;
 	{~keepLooping}.while ({
 		"loop1_3".postln;
