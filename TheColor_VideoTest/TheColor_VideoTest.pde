@@ -11,9 +11,10 @@ OscP5 oscP5;
 boolean isDrawing = false;
 float posX = 0.5;
 float posY = 0.5;
-
+PGraphics pg;
 PFont f;
 
+//float transparency = 255;
 // https://processing.org/reference/createGraphics_.html
 
 /*
@@ -34,6 +35,8 @@ void setup() {
   myMovie = new Movie(this, "TheColor_tImelapse_v2.mov");
   myMovie.play();
   
+  pg = createGraphics(1440, 1080);
+  
   oscP5 = new OscP5(this,57150);
   f = createFont("BrushScriptMT", 50);
 }
@@ -44,14 +47,24 @@ void draw() {
   //stroke(random(100,180),random(100,180),random(100,180) ,20);
   //strokeWeight(10);
   
-  fill(random(100,180),random(80,150),random(1,150));
-  
-  noStroke();
-  
+    /*
   if (isDrawing == true) {
    textFont(f);
    text(poem, posX * width, posY * height);
   }
+  */
+  
+  pg.beginDraw();
+  //pg.background(255,20);
+  pg.fill(random(150,180),random(150,180),random(30));
+  noStroke();
+  
+  if (mousePressed == true) {
+    pg.textFont(f);
+    pg.text(poem, mouseX, mouseY);
+  }
+  pg.endDraw();
+  image(pg, 0, 0);
 }
 
 // Called every time a new frame is available to read

@@ -14,8 +14,7 @@ n.sendMsg("/qtm", "StreamFrames", "AllFrames", "3D");
 // Stop Streaming:
 n.sendMsg("/qtm", "StreamFrames", "Stop");
 
-
-// OSCRecorderGUI();
+ OSCRecorderGUI();  //play back
 
 // Connect to Qualisis-----------------------------------------------
 (
@@ -60,3 +59,4 @@ OSCdef(\oben, {|msg, time, addr, recvPort|
 }, "/qtm/3d/PEN_TIP"); // 6DOF name here
 )
 //  paper position
+

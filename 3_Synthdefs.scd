@@ -24,7 +24,7 @@ SynthDef(\effect2, {|in, out, wet|
 	Out.ar(out, (drySignal *(1.0 - wet)) + (wetSignal *wet));
 }).add;
 
-SynthDef(\effec3, { |in, out,wet|
+SynthDef(\effect3, { |in, out,wet|
 	var drySignal, wetSignal, ctl;
 	drySignal = In.ar(in, 2);
 	ctl = HPF.kr(in, MouseX.kr(2, 200, 1));
