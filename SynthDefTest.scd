@@ -1,3 +1,12 @@
+"1_Load_AudioFiles.scd".loadRelative;
+
+
+(
+SynthDef(\bufferPlayer, {|buffer=0, out=0|
+	var sig = PlayBuf.ar(2, buffer, doneAction:2);
+	Out.ar(out, sig);
+}).add;
+)
 
 (
 SynthDef(\effect1, {|in, out, freq = 400, endvalue = 20|
@@ -46,13 +55,13 @@ Synth(\bufferPlayer, [\buffer, ~loops[0], \out, h]);
 
 
 (
-SynthDef(\effect4, {
+SynthDef(\effect4, {|in, out|
     Out.ar(
-        1,
+        out,
         DelayN.ar(
-            In.ar(0, 1),
-			MouseX.kr(0, 0.5),
-            MouseY.kr(0, 0.5)
+            In.ar(in, 2),
+			MouseX.kr(0.0, 0.5),
+            MouseY.kr(0.0, 0.5)
         )
     )
 }).add;
