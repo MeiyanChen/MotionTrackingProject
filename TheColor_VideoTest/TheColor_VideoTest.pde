@@ -32,7 +32,7 @@ n.sendMsg("/poemPos", 1, 0.5, 0.2); // writing at  position 0.5/0.2
 
 void setup() {
   size(1440, 1080);
-  myMovie = new Movie(this, "TheColor_tImelapse_v2.mov");
+  myMovie = new Movie(this, "TheColor_VideoV1.mov");
   myMovie.play();
   
   pg = createGraphics(1440, 1080);
