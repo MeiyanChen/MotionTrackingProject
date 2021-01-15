@@ -28,11 +28,11 @@ Synth(\bufferPlayer, [\buffer, ~loops[0], \endvalue, 10, \out, f]); // endvalue 
 SynthDef(\effect2, {|in, out, wet|
 	var drySignal, wetSignal, vib;
 	drySignal = In.ar(in, 2);
-	vib = BPF.kr(in, MouseX.kr(1, 400, 1), 0.3) * 10;
+	vib = BPF.ar(drySignal, MouseX.kr(20, 400, 1), 0.3) * 2;
 	wetSignal = drySignal * SinOsc.ar(vib * 5 + 10) * 0.2;
 	Out.ar(out, (drySignal *(1.0 - wet)) + (wetSignal *wet));
 }).add;
-
+//reduce wet, 1hz - 40hz
 )
 g = Bus.audio(s, 2);
 ~effect2 = Synth(\effect2, [\in, g]);

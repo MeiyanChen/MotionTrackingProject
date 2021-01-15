@@ -12,6 +12,7 @@ boolean isDrawing = false;
 float posX = 0.5;
 float posY = 0.5;
 PGraphics pg;
+PGraphics pg2;
 PFont f;
 
 //float transparency = 255;
@@ -31,11 +32,12 @@ n.sendMsg("/poemPos", 1, 0.5, 0.2); // writing at  position 0.5/0.2
 */
 
 void setup() {
-  size(1440, 1080);
+  size(1440, 720);
   myMovie = new Movie(this, "TheColor_VideoV1.mov");
   myMovie.play();
   
-  pg = createGraphics(1440, 1080);
+  pg = createGraphics(width, height);
+  pg2 = createGraphics(width, height);
   
   oscP5 = new OscP5(this,57150);
   f = createFont("BrushScriptMT", 50);
@@ -55,16 +57,29 @@ void draw() {
   */
   
   pg.beginDraw();
-  //pg.background(255,20);
+  pg.background(255,20);
   pg.fill(random(150,180),random(150,180),random(30));
-  noStroke();
+  //pg.noStroke();
   
   if (mousePressed == true) {
     pg.textFont(f);
     pg.text(poem, mouseX, mouseY);
   }
   pg.endDraw();
+  
+  pg2.beginDraw();
+  pg2.background(255,20);
+  pg2.fill(random(150,180),random(150,180),random(30));
+  pg2.noStroke();
+  if (mousePressed == true) {
+  pg2.textFont(f);
+  pg2.text(poem, mouseX, mouseY);
+  }
+  pg2.endDraw();
+  
+  
   image(pg, 0, 0);
+  image(pg2, 0, 0);
 }
 
 // Called every time a new frame is available to read
