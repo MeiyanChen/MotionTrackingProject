@@ -1,6 +1,5 @@
 "1_Load_AudioFiles.scd".loadRelative;
 
-
 (
 SynthDef(\bufferPlayer, {|buffer=0, out=0|
 	var sig = PlayBuf.ar(2, buffer, doneAction:2);
@@ -8,6 +7,7 @@ SynthDef(\bufferPlayer, {|buffer=0, out=0|
 }).add;
 )
 
+//line
 (
 SynthDef(\effect1, {|in, out, freq = 400, endvalue = 20|
 	var source = In.ar(in, 2);
@@ -21,30 +21,31 @@ SynthDef(\effect1, {|in, out, freq = 400, endvalue = 20|
 
 f = Bus.audio(s, 2);
 ~effect1 = Synth(\effect1, [\in, f]);
-Synth(\bufferPlayer, [\buffer, ~loops[0], \endvalue, 10, \out, f]); // endvalue lower, effect more.
+Synth(\bufferPlayer, [\buffer, ~loops[0], \endvalue, 2, \out, f]); // endvalue lower, effect more.
 
-
+//BPF
 (
-SynthDef(\effect2, {|in, out, wet|
+SynthDef(\effect2, {|in, out, wet = 0.9|
 	var drySignal, wetSignal, vib;
 	drySignal = In.ar(in, 2);
 	vib = BPF.ar(drySignal, MouseX.kr(20, 400, 1), 0.3) * 2;
 	wetSignal = drySignal * SinOsc.ar(vib * 5 + 10) * 0.2;
 	Out.ar(out, (drySignal *(1.0 - wet)) + (wetSignal *wet));
 }).add;
-//reduce wet, 1hz - 40hz
+//reduce wet, 1hz - 40hz, wet higher effect stronger
 )
 g = Bus.audio(s, 2);
 ~effect2 = Synth(\effect2, [\in, g]);
 Synth(\bufferPlayer, [\buffer, ~loops[0], \out, g]);
+Quark.checkout;
 
-
+//HPF
 (
-SynthDef(\effect3, { |in, out,wet|
+SynthDef(\effect3, { |in, out,wet = 0.9|
 	var drySignal, wetSignal, ctl;
 	drySignal = In.ar(in, 2);
-	ctl = HPF.kr(in, MouseX.kr(2, 200, 1));
-	wetSignal = drySignal * SinOsc.ar(ctl * 5 + 10) * 0.1;
+	ctl = HPF.ar(drySignal, MouseX.kr(20, 60, 1));
+	wetSignal = drySignal * ctl;
     Out.ar(out, (drySignal *(1.0 - wet)) + (wetSignal *wet));
 }).add;
 )
@@ -53,7 +54,7 @@ h = Bus.audio(s, 2);
 ~effect3 = Synth(\effect3, [\in, h]);
 Synth(\bufferPlayer, [\buffer, ~loops[0], \out, h]);
 
-
+// Delay
 (
 SynthDef(\effect4, {|in, out|
     Out.ar(
@@ -70,3 +71,17 @@ SynthDef(\effect4, {|in, out|
 i = Bus.audio(s, 2);
 ~effect4 = Synth(\effect4, [\in, i]);
 Synth(\bufferPlayer, [\buffer, ~loops[0], \out, i]);
+
+(
+SynthDef(\effect5, { |in, out, wet = 0.9, size = 3|
+	var drySignal, wetSignal, rev;
+	drySignal = In.ar(in, 2);
+	rev = JPverb.ar(drySignal,1, MouseX.kr(0.0, 1.0), MouseX.kr(0.5, 4.0));
+	wetSignal = drySignal * rev;
+    Out.ar(out, (drySignal *(1.0 - wet)) + (wetSignal *wet));
+}).add;
+)
+
+j = Bus.audio(s, 2);
+~effect4 = Synth(\effect5, [\in, j]);
+Synth(\bufferPlayer, [\buffer, ~loops[0], \out, j,\earlyDiff, 0.1]);

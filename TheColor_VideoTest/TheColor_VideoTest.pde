@@ -44,8 +44,7 @@ void setup() {
 }
 
 void draw() {
-  image(myMovie, 0, 0, width, height);
-  //tint(0,153,204);
+    //tint(0,153,204);
   //stroke(random(100,180),random(100,180),random(100,180) ,20);
   //strokeWeight(10);
   
@@ -56,8 +55,17 @@ void draw() {
   }
   */
   
+  
+  pg2 = createGraphics(width, height);
+  pg2.beginDraw();
+  pg2.tint(255,240);
+  pg2.image(pg, 0, 0);
+  pg2.endDraw();
+  
+  pg = createGraphics(width, height);
   pg.beginDraw();
   pg.background(255,20);
+  pg.image(pg2, 0, 0);
   pg.fill(random(150,180),random(150,180),random(30));
   //pg.noStroke();
   
@@ -67,19 +75,8 @@ void draw() {
   }
   pg.endDraw();
   
-  pg2.beginDraw();
-  pg2.background(255,20);
-  pg2.fill(random(150,180),random(150,180),random(30));
-  pg2.noStroke();
-  if (mousePressed == true) {
-  pg2.textFont(f);
-  pg2.text(poem, mouseX, mouseY);
-  }
-  pg2.endDraw();
-  
-  
+  image(myMovie, 0, 0, width, height);
   image(pg, 0, 0);
-  image(pg2, 0, 0);
 }
 
 // Called every time a new frame is available to read
