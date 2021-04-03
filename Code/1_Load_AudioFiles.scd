@@ -29,7 +29,7 @@ b[\Loops][2];
 (
 
 ~loops = Array.new;
-~folder1 = PathName(PathName(thisProcess.nowExecutingPath).parentPath ++ "Buffers/Loops/");
+~folder1 = PathName(PathName(thisProcess.nowExecutingPath).parentPath ++ "../Buffers/Loops/");
 
 
 ~folder1.entries.do({
@@ -41,7 +41,7 @@ b[\Loops][2];
 
 
 ~pencilwriting = Array.new;
-~folder2 = PathName(PathName(thisProcess.nowExecutingPath).parentPath++ "Buffers/PencilWriting/");
+~folder2 = PathName(PathName(thisProcess.nowExecutingPath).parentPath++ "../Buffers/PencilWriting/");
 
 
 ~folder2.entries.do({

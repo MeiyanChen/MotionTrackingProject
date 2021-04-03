@@ -15,6 +15,8 @@ PGraphics pg;
 PGraphics pg2;
 PFont f;
 
+float lastPositionActivity = 0;
+
 //float transparency = 255;
 // https://processing.org/reference/createGraphics_.html
 
@@ -32,18 +34,22 @@ n.sendMsg("/poemPos", 1, 0.5, 0.2); // writing at  position 0.5/0.2
 */
 
 void setup() {
-  size(1440, 720);
+  size(1440, 720, P3D);
   myMovie = new Movie(this, "TheColor_tImelapse_v2.mov");
   myMovie.play();
-  
-  pg = createGraphics(width, height);
-  pg2 = createGraphics(width, height);
+    myMovie.speed(0.05);
+
+  pg = createGraphics(width, height, P3D);
+  pg2 = createGraphics(width, height, P3D);
   
   oscP5 = new OscP5(this,57150);
   f = createFont("BrushScriptMT", 50);
+
 }
 
 void draw() {
+  
+  println(frameRate);
     //tint(0,153,204);
   //stroke(random(100,180),random(100,180),random(100,180) ,20);
   //strokeWeight(10);
@@ -69,10 +75,18 @@ void draw() {
   pg.fill(random(150,180),random(150,180),random(30));
   //pg.noStroke();
   
+  /*
   if (mousePressed == true) {
     pg.textFont(f);
     pg.text(poem, mouseX, mouseY);
   }
+  */
+  
+  if(lastPositionActivity > millis() - 200) {
+    pg.textFont(f);
+    pg.text(poem, posX * width, (1.0 - posY) * height);
+  }
+  
   pg.endDraw();
   
   image(myMovie, 0, 0, width, height);
@@ -82,7 +96,6 @@ void draw() {
 // Called every time a new frame is available to read
 void movieEvent(Movie m) {
   m.read();
-  m.speed(0.05);
 }
 
 void oscEvent(OscMessage theOscMessage) {
@@ -97,8 +110,16 @@ void oscEvent(OscMessage theOscMessage) {
   }
   
   if(theOscMessage.addrPattern().equals("/poemPos")) {
+    lastPositionActivity = millis();
     isDrawing = theOscMessage.get(0).intValue() != 0;
     posX = theOscMessage.get(1).floatValue();
     posY = theOscMessage.get(2).floatValue();
+  }
+  
+  
+  if(theOscMessage.addrPattern().equals("/poemPosTouch")) {
+    lastPositionActivity = millis();
+    posX = theOscMessage.get(0).floatValue();
+    posY = theOscMessage.get(1).floatValue();
   }
 }
