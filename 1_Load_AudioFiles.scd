@@ -1,5 +1,6 @@
 //load the audio file
 ~out = 0;
+~projectPath = PathName(thisProcess.nowExecutingPath).parentPath;
 /*
 ~path = PathName(thisProcess.nowExecutingPath).parentPath++"Buffers/";
 
@@ -29,7 +30,7 @@ b[\Loops][2];
 (
 
 ~loops = Array.new;
-~folder1 = PathName(PathName(thisProcess.nowExecutingPath).parentPath ++ "/Buffers/Loops/");
+~folder1 = PathName(~projectPath ++ "Buffers/Loops/");
 
 ~folder1.entries.do({
 	arg path;
@@ -40,12 +41,13 @@ b[\Loops][2];
 
 
 ~pencilwriting = Array.new;
-~folder2 = PathName(PathName(thisProcess.nowExecutingPath).parentPath++ "/Buffers/PencilWriting/");
+~folder2 = PathName(~projectPath ++ "Buffers/PencilWriting/");
 
 ~folder2.entries.do({
 	arg path;
 	~pencilwriting = ~pencilwriting.add(Buffer.read(s, path.fullPath));
 });
+
 
 /*
 ~orchestra = Array.new;
@@ -56,25 +58,25 @@ b[\Loops][2];
 	~orchestra = ~orchestra.add(Buffer.read(s, path.fullPath));*/
 
 ~orchestraStart = [
-	"/Volumes/Meiyan_Chen/Projects/MotionTrackingProject/MTgit/Buffers/Orchestra/Loop1_1.aif",
-	"/Volumes/Meiyan_Chen/Projects/MotionTrackingProject/MTgit/Buffers/Orchestra/Loop1_2.aif",
-	"/Volumes/Meiyan_Chen/Projects/MotionTrackingProject/MTgit/Buffers/Orchestra/Loop1_3.aif",
-	"/Volumes/Meiyan_Chen/Projects/MotionTrackingProject/MTgit/Buffers/Orchestra/Loop2.aif",
+	~projectPath ++ "Buffers/Orchestra/Loop1_1.aif",
+	~projectPath ++ "Buffers/Orchestra/Loop1_2.aif",
+	~projectPath ++ "Buffers/Orchestra/Loop1_3.aif",
+	~projectPath ++ "Buffers/Orchestra/Loop2.aif",
 ];
 
 
 
 ~orchestraMiddle = [
-	"/Volumes/Meiyan_Chen/Projects/MotionTrackingProject/MTgit/Buffers/Orchestra/Loop3_1.wav",
-	"/Volumes/Meiyan_Chen/Projects/MotionTrackingProject/MTgit/Buffers/Orchestra/Loop3_2.wav",
-	"/Volumes/Meiyan_Chen/Projects/MotionTrackingProject/MTgit/Buffers/Orchestra/Loop3_3.wav",
+	~projectPath ++ "Buffers/Orchestra/Loop3_1.wav",
+	~projectPath ++ "Buffers/Orchestra/Loop3_2.wav",
+	~projectPath ++ "Buffers/Orchestra/Loop3_3.wav",
 ];
 
 
 
 ~orchestraEnd = [
-	"/Volumes/Meiyan_Chen/Projects/MotionTrackingProject/MTgit/Buffers/Orchestra/Loop4.wav",
-	"/Volumes/Meiyan_Chen/Projects/MotionTrackingProject/MTgit/Buffers/Orchestra/Loop5.wav"
+	~projectPath ++ "Buffers/Orchestra/Loop4.wav",
+	~projectPath ++ "Buffers/Orchestra/Loop5.wav"
 ];
 
 

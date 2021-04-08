@@ -1,3 +1,4 @@
+// also defines ~projectPath
 "1_Load_AudioFiles.scd".loadRelative;
 
 ( // create Control Busses
@@ -37,10 +38,10 @@ SynthDef(\reverb, { |in, out, wet = 0.9,t60 = 1.2, damp = 0.1, size = 1.2, early
 (
 var sequence, stream, nextFunction;
 
-~beat0 = "/Volumes/Meiyan_Chen/Projects/MotionTrackingProject/MTgit/Buffers/Loops/01HeavyKickLoop_V2_TouchOSC.wav";
+~beat0 = ~projectPath ++ "Buffers/Loops/01HeavyKickLoop_V2_TouchOSC.wav";
 ~beat1 = ~loops.choose.postln;
 ~beat2 = ~loops.choose.postln;
-~orchestra1 = "/Volumes/Meiyan_Chen/Projects/MotionTrackingProject/MTgit/Buffers/Orchestra/Loop1_1.aif";
+~orchestra1 = ~projectPath ++ "Buffers/Orchestra/Loop1_1.aif";
 ~orchestra2 = ~orchestraMiddle.choose.postln;
 ~orchestra3 = ~orchestraEnd.choose.postln;
 
@@ -74,10 +75,10 @@ Tdef(\bufferPlayer).stop;
 Tdef(\a, { inf.do {
 		var buffer0;
 	    var buffer1;
-		buffer0 = "/Volumes/Meiyan_Chen/Projects/MotionTrackingProject/MTgit/Buffers/Loops/01HeavyKickLoop_V2_TouchOSC.wav";
+		buffer0 = ~projectPath ++ "Buffers/Loops/01HeavyKickLoop_V2_TouchOSC.wav";
 		~beat0 = Synth(\bufferPlayer, [\buffer, buffer0, \out, f]);
 		 (8*5*0.5).wait;
-		buffer1 = "/Volumes/Meiyan_Chen/Projects/MotionTrackingProject/MTgit/Buffers/Orchestra/Loop1_1.aif";
+		buffer1 = ~projectPath ++ "Buffers/Orchestra/Loop1_1.aif";
 		~orchestra1 = Synth(\bufferPlayer, [\buffer, buffer1, \out, f]);
 		 (6*4*0.5).wait;
 	}});
@@ -85,7 +86,7 @@ Tdef(\a, { inf.do {
 
 Tdef(\b, { 4.do {
 		var buffer1;
-		buffer1 = "/Volumes/Meiyan_Chen/Projects/MotionTrackingProject/MTgit/Buffers/Orchestra/Loop1_1.aif";
+		buffer1 = ~projectPath ++ "Buffers/Orchestra/Loop1_1.aif";
 		~orchestra1 = Synth(\bufferPlayer, [\buffer, buffer1, \out, f]);
 		 (6*4*0.5).wait;
 	}});
@@ -120,14 +121,14 @@ Tdef(\bufferPlayer, {
 
 	inf.do {
 		var buffer0;
-		buffer0 = "/Volumes/Meiyan_Chen/Projects/MotionTrackingProject/MTgit/Buffers/Loops/01HeavyKickLoop_V2_TouchOSC.wav";
+		buffer0 = ~projectPath ++ "Buffers/Loops/01HeavyKickLoop_V2_TouchOSC.wav";
 		~beat0 = Synth(\bufferPlayer, [\buffer, buffer0, \out, f]);
 		 (8*5*0.5).wait;
 	};
 
 	4.do {
 		var buffer1;
-		buffer1 = "/Volumes/Meiyan_Chen/Projects/MotionTrackingProject/MTgit/Buffers/Orchestra/Loop1_1.aif";
+		buffer1 = ~projectPath ++ "Buffers/Orchestra/Loop1_1.aif";
 		~orchestra1 = Synth(\bufferPlayer, [\buffer, buffer1, \out, f]);
 		 (6*4*0.5).wait;
 	};
