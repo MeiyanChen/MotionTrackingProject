@@ -29,8 +29,7 @@ b[\Loops][2];
 (
 
 ~loops = Array.new;
-~folder1 = PathName(PathName(thisProcess.nowExecutingPath).parentPath ++ "../Buffers/Loops/");
-
+~folder1 = PathName(PathName(thisProcess.nowExecutingPath).parentPath ++ "/Buffers/Loops/");
 
 ~folder1.entries.do({
 	arg path;
@@ -41,15 +40,49 @@ b[\Loops][2];
 
 
 ~pencilwriting = Array.new;
-~folder2 = PathName(PathName(thisProcess.nowExecutingPath).parentPath++ "../Buffers/PencilWriting/");
-
+~folder2 = PathName(PathName(thisProcess.nowExecutingPath).parentPath++ "/Buffers/PencilWriting/");
 
 ~folder2.entries.do({
 	arg path;
 	~pencilwriting = ~pencilwriting.add(Buffer.read(s, path.fullPath));
 });
-)
 
+/*
+~orchestra = Array.new;
+~folder3 = PathName(PathName(thisProcess.nowExecutingPath).parentPath++ "/Buffers/Orchestra/");
+
+~folder3.entries.do({
+	arg path;
+	~orchestra = ~orchestra.add(Buffer.read(s, path.fullPath));*/
+
+~orchestraStart = [
+	"/Volumes/Meiyan_Chen/Projects/MotionTrackingProject/MTgit/Buffers/Orchestra/Loop1_1.aif",
+	"/Volumes/Meiyan_Chen/Projects/MotionTrackingProject/MTgit/Buffers/Orchestra/Loop1_2.aif",
+	"/Volumes/Meiyan_Chen/Projects/MotionTrackingProject/MTgit/Buffers/Orchestra/Loop1_3.aif",
+	"/Volumes/Meiyan_Chen/Projects/MotionTrackingProject/MTgit/Buffers/Orchestra/Loop2.aif",
+];
+
+
+
+~orchestraMiddle = [
+	"/Volumes/Meiyan_Chen/Projects/MotionTrackingProject/MTgit/Buffers/Orchestra/Loop3_1.wav",
+	"/Volumes/Meiyan_Chen/Projects/MotionTrackingProject/MTgit/Buffers/Orchestra/Loop3_2.wav",
+	"/Volumes/Meiyan_Chen/Projects/MotionTrackingProject/MTgit/Buffers/Orchestra/Loop3_3.wav",
+];
+
+
+
+~orchestraEnd = [
+	"/Volumes/Meiyan_Chen/Projects/MotionTrackingProject/MTgit/Buffers/Orchestra/Loop4.wav",
+	"/Volumes/Meiyan_Chen/Projects/MotionTrackingProject/MTgit/Buffers/Orchestra/Loop5.wav"
+];
+
+
+~orchestraStart  = ~orchestraStart.collect {|path| Buffer.read(s, path)};
+~orchestraMiddle  = ~orchestraMiddle.collect {|path| Buffer.read(s, path)};
+~orchestraEnd  = ~orchestraEnd.collect {|path| Buffer.read(s, path)};
+
+)
 /*
 play it raw
 ~loops[0].play;  //1.1   6   bar

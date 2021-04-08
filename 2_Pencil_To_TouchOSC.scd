@@ -30,8 +30,8 @@ SynthDef(\buf_grainPencil, { |out, amp = 1, sndbuf, envbuf|
 
 	pos = Integrator.kr(delta, 1.0);
 
-    // use mouse x to control panning
-	trig = Impulse.ar(delta * 2000);// * MouseButton.kr(0, 1);
+
+	trig = Impulse.ar(delta * 2000);
 	pan = In.kr(c, 1) * 2 - 1;
 	dur = In.kr(d, 1) * 0.5 ; // interesting to play with
 

@@ -35,15 +35,17 @@ n.sendMsg("/poemPos", 1, 0.5, 0.2); // writing at  position 0.5/0.2
 
 void setup() {
   size(1440, 720, P3D);
-  myMovie = new Movie(this, "TheColor_tImelapse_v2.mov");
+   //myMovie = new Movie(this, "TheColor_tImelapse_v2.mov");
+  myMovie = new Movie(this, "TheColor_VideoV1.mov");
+ 
   myMovie.play();
-    myMovie.speed(0.05);
+  myMovie.speed(2);
 
   pg = createGraphics(width, height, P3D);
   pg2 = createGraphics(width, height, P3D);
   
   oscP5 = new OscP5(this,57150);
-  f = createFont("BrushScriptMT", 50);
+  f = createFont("BrushScriptMT", 30);
 
 }
 
