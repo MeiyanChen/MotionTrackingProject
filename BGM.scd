@@ -34,19 +34,24 @@ SynthDef(\reverb, { |in, out, wet = 0.9,t60 = 1.2, damp = 0.1, size = 1.2, early
 
 )
 
+( // probably best put into loadAudioFiles
+~kickHeavyBuffer = Buffer.read(s, ~projectPath ++ "Buffers/Loops/01HeavyKickLoop_V2_TouchOSC.wav");
+~orchestraLoop1_1Buffer = Buffer.read(s, ~projectPath ++ "Buffers/Orchestra/Loop1_1.aif");
+)
+
 // option 1------------------------------------------------------------------------------------------
 (
 var sequence, stream, nextFunction;
 
-~beat0 = ~projectPath ++ "Buffers/Loops/01HeavyKickLoop_V2_TouchOSC.wav";
+~beat0 = ~kickHeavyBuffer;
 ~beat1 = ~loops.choose.postln;
 ~beat2 = ~loops.choose.postln;
-~orchestra1 = ~projectPath ++ "Buffers/Orchestra/Loop1_1.aif";
+~orchestra1 = ~orchestraLoop1Buffer;
 ~orchestra2 = ~orchestraMiddle.choose.postln;
 ~orchestra3 = ~orchestraEnd.choose.postln;
 
 sequence = Pseq([
-	~beat0,
+	[~beat0],
 	[~orchestra1, ~beat1],
 	[~orchestra2, ~beat2],
 	[~orchestra3, ~beat3], inf
@@ -56,18 +61,20 @@ stream = sequence.asStream;
 
 Routine({
     loop({
-        Synth(\bufferPlayer, [\buffer, stream.next.postln]);
-        (8*5*0.5).wait;
-    })
+		var samples = stream.next;
+		samples.do {|sample|
+			Synth(\bufferPlayer, [\buffer, sample.postln]);
+		};
+		(8*5*0.5).wait;
+	})
 }).play;
 )
 
 
-
-
-Tdef(\bufferPlayer).play;
-~keepLooping = false;
-Tdef(\bufferPlayer).stop;
+(
+f = Bus.audio(s, 2);  //reverb
+~reverb = Synth(\reverb, [\in, f]);
+)
 
 // option 2
 //-------------------------------------------------------------------------------------------------
@@ -75,29 +82,34 @@ Tdef(\bufferPlayer).stop;
 Tdef(\a, { inf.do {
 		var buffer0;
 	    var buffer1;
-		buffer0 = ~projectPath ++ "Buffers/Loops/01HeavyKickLoop_V2_TouchOSC.wav";
+		buffer0 = ~kickHeavyBuffer;
 		~beat0 = Synth(\bufferPlayer, [\buffer, buffer0, \out, f]);
 		 (8*5*0.5).wait;
-		buffer1 = ~projectPath ++ "Buffers/Orchestra/Loop1_1.aif";
+		buffer1 = ~orchestraLoop1_1Buffer;
 		~orchestra1 = Synth(\bufferPlayer, [\buffer, buffer1, \out, f]);
 		 (6*4*0.5).wait;
 	}});
 )
 
+(
 Tdef(\b, { 4.do {
 		var buffer1;
-		buffer1 = ~projectPath ++ "Buffers/Orchestra/Loop1_1.aif";
+		buffer1 = ~orchestraLoop1_1Buffer;
 		~orchestra1 = Synth(\bufferPlayer, [\buffer, buffer1, \out, f]);
 		 (6*4*0.5).wait;
 	}});
+)
 
+(
 Tdef(\c, { inf.do {
 		var buffer2;
 		buffer2 = ~loops.choose.postln;
 		~beat2 = Synth(\bufferPlayer, [\buffer, buffer2, \out, f]);
 		 (8*5*0.5).wait;
 	}});
+)
 
+(
 Tdef(\d, {
     "fork - parallel.".postln;
     0.2.wait;
@@ -110,7 +122,13 @@ Tdef(\d, {
     "done.".postln;
 });
 )
-Tdef(\a).play;
+Tdef(\d).play;
+
+
+
+Tdef(\bufferPlayer).play;
+~keepLooping = false;
+Tdef(\bufferPlayer).stop;
 
 // option 3------------------------------------------------------------------------
 (
@@ -121,14 +139,14 @@ Tdef(\bufferPlayer, {
 
 	inf.do {
 		var buffer0;
-		buffer0 = ~projectPath ++ "Buffers/Loops/01HeavyKickLoop_V2_TouchOSC.wav";
+		buffer0 = ~kickHeavyBuffer;
 		~beat0 = Synth(\bufferPlayer, [\buffer, buffer0, \out, f]);
 		 (8*5*0.5).wait;
 	};
 
 	4.do {
 		var buffer1;
-		buffer1 = ~projectPath ++ "Buffers/Orchestra/Loop1_1.aif";
+		buffer1 = ~orchestraLoop1_1Buffer;
 		~orchestra1 = Synth(\bufferPlayer, [\buffer, buffer1, \out, f]);
 		 (6*4*0.5).wait;
 	};
