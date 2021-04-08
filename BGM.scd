@@ -14,7 +14,6 @@ e = Bus.control(s, 1); // Writing (1) or not Writing (0)
 }.play;
 )
 
-
 (
 
 SynthDef(\bufferPlayer, {|buffer=0, out=0, pan = -1|
@@ -46,7 +45,7 @@ var sequence, stream, nextFunction;
 ~beat0 = ~kickHeavyBuffer;
 ~beat1 = ~loops.choose.postln;
 ~beat2 = ~loops.choose.postln;
-~orchestra1 = ~orchestraLoop1Buffer;
+~orchestra1 = ~orchestraLoop1_1Buffer;
 ~orchestra2 = ~orchestraMiddle.choose.postln;
 ~orchestra3 = ~orchestraEnd.choose.postln;
 
@@ -54,8 +53,8 @@ sequence = Pseq([
 	[~beat0],
 	[~orchestra1, ~beat1],
 	[~orchestra2, ~beat2],
-	[~orchestra3, ~beat3], inf
-]);
+	[~orchestra3, ~beat3]
+], inf);
 
 stream = sequence.asStream;
 
