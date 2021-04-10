@@ -1,35 +1,11 @@
 //load the audio file
-~out = 0;
-~projectPath = PathName(thisProcess.nowExecutingPath).parentPath;
-/*
-~path = PathName(thisProcess.nowExecutingPath).parentPath++"Buffers/";
 
-
-//3. define piece-specific functions
-~makeBuffers = {
-	b = Dictionary.new;
-	PathName(~path).entries.do{
-		arg subfolder;
-		b.add(
-			subfolder.folderName.asSymbol ->
-			Array.fill(
-				subfolder.entries.size,
-				{
-					arg i;
-					Buffer.read(s, subfolder.entries[i].fullPath);
-				}
-			)
-		);
-	};
-};
-
-~makeBuffers.value;
-b[\Loops][2];
-*/
 
 (
-
+~out = 0;
+~projectPath = PathName(thisProcess.nowExecutingPath).parentPath;
 ~loops = Array.new;
+
 ~folder1 = PathName(~projectPath ++ "Buffers/Loops/");
 
 ~folder1.entries.do({
@@ -58,10 +34,10 @@ b[\Loops][2];
 	~orchestra = ~orchestra.add(Buffer.read(s, path.fullPath));*/
 
 ~orchestraStart = [
-	~projectPath ++ "Buffers/Orchestra/Loop1_1.aif",
-	~projectPath ++ "Buffers/Orchestra/Loop1_2.aif",
-	~projectPath ++ "Buffers/Orchestra/Loop1_3.aif",
-	~projectPath ++ "Buffers/Orchestra/Loop2.aif",
+	~projectPath ++ "Buffers/Orchestra/Loop1_1.wav",
+	~projectPath ++ "Buffers/Orchestra/Loop1_2.wav",
+	~projectPath ++ "Buffers/Orchestra/Loop1_3.wav",
+	~projectPath ++ "Buffers/Orchestra/Loop2.wav",
 ];
 
 
@@ -83,6 +59,12 @@ b[\Loops][2];
 ~orchestraStart  = ~orchestraStart.collect {|path| Buffer.read(s, path)};
 ~orchestraMiddle  = ~orchestraMiddle.collect {|path| Buffer.read(s, path)};
 ~orchestraEnd  = ~orchestraEnd.collect {|path| Buffer.read(s, path)};
+
+ // probably best put into loadAudioFiles
+~kickHeavyBuffer = Buffer.read(s, ~projectPath ++ "Buffers/Loops/01HeavyKick.wav");
+~orchestraLoop1_1Buffer = Buffer.read(s, ~projectPath ++ "Buffers/Orchestra/Loop1_1.wav");
+~end1Buffer = Buffer.read(s, ~projectPath ++ "Buffers/Orchestra/Loop4.wav");
+~end2Buffer = Buffer.read(s, ~projectPath ++ "Buffers/Orchestra/Loop5.wav");
 
 )
 /*
@@ -120,4 +102,30 @@ play it raw
 ~pencilwriting[17].play; //Stereo Slow
 
 
+*/
+
+/*
+~path = PathName(thisProcess.nowExecutingPath).parentPath++"Buffers/";
+
+
+//3. define piece-specific functions
+~makeBuffers = {
+	b = Dictionary.new;
+	PathName(~path).entries.do{
+		arg subfolder;
+		b.add(
+			subfolder.folderName.asSymbol ->
+			Array.fill(
+				subfolder.entries.size,
+				{
+					arg i;
+					Buffer.read(s, subfolder.entries[i].fullPath);
+				}
+			)
+		);
+	};
+};
+
+~makeBuffers.value;
+b[\Loops][2];
 */

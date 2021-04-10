@@ -34,18 +34,20 @@ n.sendMsg("/poemPos", 1, 0.5, 0.2); // writing at  position 0.5/0.2
 */
 
 void setup() {
-  size(1440, 720, P3D);
+  
+ //fullScreen(P3D);
+  size(1440, 800, P3D);
    //myMovie = new Movie(this, "TheColor_tImelapse_v2.mov");
-  myMovie = new Movie(this, "TheColor_VideoV1.mov");
+  myMovie = new Movie(this, "TheColortimelinerevised.mov");
  
   myMovie.play();
-  myMovie.speed(2);
+  //myMovie.speed(2);
 
   pg = createGraphics(width, height, P3D);
   pg2 = createGraphics(width, height, P3D);
   
   oscP5 = new OscP5(this,57150);
-  f = createFont("BrushScriptMT", 30);
+  f = createFont("Libian SC", 30);
 
 }
 
@@ -66,7 +68,7 @@ void draw() {
   
   pg2 = createGraphics(width, height);
   pg2.beginDraw();
-  pg2.tint(255,240);
+  pg2.tint(255,210);
   pg2.image(pg, 0, 0);
   pg2.endDraw();
   
@@ -74,7 +76,7 @@ void draw() {
   pg.beginDraw();
   pg.background(255,20);
   pg.image(pg2, 0, 0);
-  pg.fill(random(150,180),random(150,180),random(30));
+  pg.fill(0);
   //pg.noStroke();
   
   /*

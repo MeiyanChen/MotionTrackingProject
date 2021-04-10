@@ -23,7 +23,7 @@ SynthDef(\buf_grainPencil, { |out, amp = 1, sndbuf, envbuf|
 	var x = Lag2.kr(In.kr(c, 1), 0.5);
 	var oldX = Delay1.kr(x);
 
-	var y = Lag2.kr(In.kr(d, 1), 0.5);
+	var y = Lag2.kr(In.kr(d, 1), 0.2);
 	var oldY = Delay1.kr(y);
 
 	var delta = (x - oldX).abs + (y - oldY).abs;
