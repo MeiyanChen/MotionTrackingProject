@@ -20,7 +20,7 @@ e = Bus.control(s, 1); // Writing (1) or not Writing (0)
 
 SynthDef(\bufferPlayer, {|buffer=0, out=0|
 	var sig = PlayBuf.ar(2, buffer, doneAction:2);
-	Out.ar(out,  sig* In.kr(c, 1).linexp(0, 1, 0.1,0.7) *In.kr(d, 1).linexp(0, 1, 0.5, 1.5));
+	Out.ar(out,  sig* In.kr(c, 1).linexp(0, 1, 0.3,0.9));
 }).add;
 
 
@@ -97,7 +97,7 @@ sequence = Pseq([
 stream = sequence.asStream;
 
 
-Routine({
+~bgm = Routine({
     loop({
 		var samples = stream.next;
 		samples.do {|sample|

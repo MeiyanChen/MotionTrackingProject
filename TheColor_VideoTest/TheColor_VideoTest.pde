@@ -38,7 +38,7 @@ void setup() {
  //fullScreen(P3D);
   size(1440, 800, P3D);
    //myMovie = new Movie(this, "TheColor_tImelapse_v2.mov");
-  myMovie = new Movie(this, "TheColortimelinerevised.mov");
+  myMovie = new Movie(this, "TheColor.mov");
  
   myMovie.play();
   //myMovie.speed(2);

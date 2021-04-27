@@ -47,49 +47,45 @@ Tdef(\poem).play;
 (
 Tdef(\poem, { 1.do {
 	    n = NetAddr("127.0.0.1", 57150);
-	    n.sendMsg("/poem",  "They think"); //我们以为我们生活在最好的时代 35''
+	    n.sendMsg("/poem",  "They think".postln); //我们以为我们生活在最好的时代 35''
 	    8.75.wait;
-        n.sendMsg("/poem", "they are");
+        n.sendMsg("/poem", "they are".postln);
 	    8.75.wait;
-        n.sendMsg("/poem", "born in");
+        n.sendMsg("/poem", "born in".postln);
 	    8.75.wait;
-        n.sendMsg("/poem", "the best time,");
-		8.75.wait;
-	    n.sendMsg("/poem",  "Ignoring"); //却看不到角落的残酷存在 37''
+        n.sendMsg("/poem", "the best time,".postln);
+		9.75.wait;
+	    n.sendMsg("/poem",  "Ignoring".postln); //却看不到角落的残酷存在 37''
 	    9.25.wait;
-        n.sendMsg("/poem", "the existence of");
+        n.sendMsg("/poem", "the existence of".postln);
 	    9.25.wait;
-        n.sendMsg("/poem", "cruelty");
+        n.sendMsg("/poem", "cruelty".postln);
         9.25.wait;
-	    n.sendMsg("/poem", "and poverty.");
-        9.25.wait;
+	    n.sendMsg("/poem", "and poverty.".postln);
+        13.25.wait;
 
-        n.sendMsg("/poem", "They are"); //我们是自怜自艾 自恋自负 又自卑自信的矛盾体 52
-		7.43.wait;
-	    n.sendMsg("/poem",  "the paradox of");
-	    7.43.wait;
-        n.sendMsg("/poem", "self-pitying");
-	    7.43.wait;
-        n.sendMsg("/poem", "resentment,");
-	    7.43.wait;
-        n.sendMsg("/poem", "self-centeredness,");
-		7.43.wait;
-	    n.sendMsg("/poem",  "self-abasement,");
-	    7.43.wait;
-        n.sendMsg("/poem", "self-confidence,");
-	    7.43.wait;
-        n.sendMsg("/poem", "Omitting"); //却看不到对他人的理解与同情心  36
-	    6.8.wait;
-        n.sendMsg("/poem", "the essence of,");
-		6.8.wait;
-	    n.sendMsg("/poem",  "Ignoring");
-	    6.8.wait;
-        n.sendMsg("/poem", "the existence of");
-	    6.8.wait;
-        n.sendMsg("/poem", "sympathy");
-	    6.8.wait;
-	    n.sendMsg("/poem", "and empathy.");   //+5
-	    6.8.wait;
+        n.sendMsg("/poem", "They are".postln); //我们是自怜自艾 自恋自负 又自卑自信的矛盾体 52
+		8.43.wait;
+	    n.sendMsg("/poem",  "the paradox of".postln);
+	    8.43.wait;
+        n.sendMsg("/poem", "self-pitying".postln);
+	    8.43.wait;
+        n.sendMsg("/poem", "resentment,".postln);
+	    8.43.wait;
+        n.sendMsg("/poem", "self-centeredness,".postln);
+		8.43.wait;
+	    n.sendMsg("/poem",  "self-abasement,".postln);
+	    8.43.wait;
+        n.sendMsg("/poem", "self-confidence,".postln);
+	    10.43.wait;
+        n.sendMsg("/poem", "Omitting".postln); //却看不到对他人的理解与同情心  36
+	    10.wait;
+        n.sendMsg("/poem", "the essence of,".postln);
+		10.wait;
+        n.sendMsg("/poem", "sympathy".postln);
+	    11.wait;
+	    n.sendMsg("/poem", "and empathy.".postln);   //+5
+	    14.wait;
  /*
         n.sendMsg("/poem", "As if"); //每个人都希望拥有幸福 30
 		7.wait;
@@ -108,64 +104,64 @@ Tdef(\poem, { 1.do {
         n.sendMsg("/poem", "toil for it.");
 	    7.wait;
 */
-        n.sendMsg("/poem", "I’d like to"); //我习惯嘲笑一些事情的存在 36
+        n.sendMsg("/poem", "Id like to".postln); //我习惯嘲笑一些事情的存在 36
 		12.wait;
-	    n.sendMsg("/poem",  "laugh at");
+	    n.sendMsg("/poem",  "laugh at".postln);
 	    12.wait;
-        n.sendMsg("/poem", "such things,");
+        n.sendMsg("/poem", "such things,".postln);
+	    14.wait;
+        n.sendMsg("/poem", "but I sigh".postln); //却无奈叹息 无力独自改变所有狭隘  40
+	    10.wait;
+        n.sendMsg("/poem", "helplessly".postln);
+		10.wait;
+	    n.sendMsg("/poem",  "at my inability".postln);
+	    10.wait;
+        n.sendMsg("/poem", "to change".postln);
+	    9.wait;
+        n.sendMsg("/poem", "the parochialism.".postln); //+5
 	    12.wait;
-        n.sendMsg("/poem", "but I sigh"); //却无奈叹息 无力独自改变所有狭隘  40
-	    9.wait;
-        n.sendMsg("/poem", "helplessly");
-		9.wait;
-	    n.sendMsg("/poem",  "at my inability");
-	    9.wait;
-        n.sendMsg("/poem", "to change");
-	    9.wait;
-        n.sendMsg("/poem", "the parochialism."); //+5
-	    9.wait;
 
 
-        n.sendMsg("/poem", "If the color of"); //海水的颜色取决于天空的颜色 35
-		8.75.wait;
-	    n.sendMsg("/poem",  "the ocean");
-	    8.75.wait;
-        n.sendMsg("/poem", "rely on that");
-	    8.75.wait;
-        n.sendMsg("/poem", "in the sky,");
-	    8.75.wait;
-        n.sendMsg("/poem", "then");  //眼睛的颜色取决于土地的颜色 39
+        n.sendMsg("/poem", "If the color of".postln); //海水的颜色取决于天空的颜色 35
 		9.75.wait;
-	    n.sendMsg("/poem",  "the eyes’ color");
+	    n.sendMsg("/poem",  "the ocean".postln);
 	    9.75.wait;
-        n.sendMsg("/poem", "reflect that");
+        n.sendMsg("/poem", "rely on that".postln);
 	    9.75.wait;
-        n.sendMsg("/poem", "of the land.");
+        n.sendMsg("/poem", "in the sky,".postln);
+	    12.75.wait;
+        n.sendMsg("/poem", "then".postln);  //眼睛的颜色取决于土地的颜色 39
+		9.75.wait;
+	    n.sendMsg("/poem",  "the eyes color".postln);
 	    9.75.wait;
+        n.sendMsg("/poem", "reflect that".postln);
+	    9.75.wait;
+        n.sendMsg("/poem", "of the land.".postln);
+	    11.75.wait;
 
-        n.sendMsg("/poem", "If there is"); //没有边界 没有信仰 是否得以成全 38
+        n.sendMsg("/poem", "If there is".postln); //没有边界 没有信仰 是否得以成全 38
 		7.6.wait;
-	    n.sendMsg("/poem",  "no border,");
+	    n.sendMsg("/poem",  "no border,".postln);
 	    7.6.wait;
-        n.sendMsg("/poem", "no belief,");
+        n.sendMsg("/poem", "no belief,".postln);
 	    7.6.wait;
-        n.sendMsg("/poem", "can it");
+        n.sendMsg("/poem", "can it".postln);
 	    7.6.wait;
-        n.sendMsg("/poem", "be fulfilled?");
-		7.6.wait;
+        n.sendMsg("/poem", "be fulfilled?".postln);
+		9.6.wait;
 
-	    n.sendMsg("/poem", "If there is"); //没有颜色 没有光彩 是否就没有黑与白 40
+	    n.sendMsg("/poem", "If there is".postln); //没有颜色 没有光彩 是否就没有黑与白 40
 		7.5.wait;
-	    n.sendMsg("/poem", "no light,");
+	    n.sendMsg("/poem", "no light,".postln);
 	    7.5.wait;
-        n.sendMsg("/poem", "no color,");
+        n.sendMsg("/poem", "no color,".postln);
 	    7.5.wait;
-        n.sendMsg("/poem", "is there");
+        n.sendMsg("/poem", "is there".postln);
 	    7.5.wait;
-        n.sendMsg("/poem", "no black?");
+        n.sendMsg("/poem", "no black?".postln);
 		7.5.wait;
-	    n.sendMsg("/poem", "and white?");  //+5
-		7.5.wait;
+	    n.sendMsg("/poem", "and white?".postln);  //+5
+		9.5.wait;
 
 
 /*
@@ -213,26 +209,26 @@ Tdef(\poem, { 1.do {
         n.sendMsg("/poem", "of the land.");
 	    10.wait;
 */
-        n.sendMsg("/poem", "If there is"); //没有得到 没有失去 是否还有感知 33
-		10.wait;
-	    n.sendMsg("/poem",  "no gain,");
-	    10.wait;
-        n.sendMsg("/poem", "no loss,");
-	    10.wait;
-        n.sendMsg("/poem", "can it");
-	    10.wait;
-        n.sendMsg("/poem", "be felt?");
-		10.wait;
+        n.sendMsg("/poem", "If there is".postln); //没有得到 没有失去 是否还有感知 33
+		6.6.wait;
+	    n.sendMsg("/poem",  "no gain,".postln);
+	    6.6.wait;
+        n.sendMsg("/poem", "no loss,".postln);
+	    6.6.wait;
+        n.sendMsg("/poem", "can it".postln);
+	    6.6.wait;
+        n.sendMsg("/poem", "be felt?".postln);
+		8.6.wait;
 
-	    n.sendMsg("/poem", "If there is"); //没有黑夜 没有光明 是否还能感知生命 42
-		10.wait;
-	    n.sendMsg("/poem",  "no darkness,");
-	    10.wait;
-        n.sendMsg("/poem", "no light, ");
-	    10.wait;
-        n.sendMsg("/poem", "can it ");
-	    10.wait;
-        n.sendMsg("/poem", "be alive?");
-		10.wait;
+	    n.sendMsg("/poem", "If there is".postln); //没有黑夜 没有光明 是否还能感知生命 42
+		8.4.wait;
+	    n.sendMsg("/poem",  "no darkness,".postln);
+	    8.4.wait;
+        n.sendMsg("/poem", "no light, ".postln);
+	    8.4.wait;
+        n.sendMsg("/poem", "can it ".postln);
+	    8.4.wait;
+        n.sendMsg("/poem", "be alive?".postln);
+		10.4.wait;
 	}});
 )

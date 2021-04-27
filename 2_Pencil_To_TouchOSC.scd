@@ -41,7 +41,7 @@ SynthDef(\buf_grainPencil, { |out, amp = 1, sndbuf, envbuf|
         doneAction: Done.freeSelf);
 
     Out.ar(out,
-		GrainBuf.ar(2, trig, dur, sndbuf, LFNoise1.kr(1).range(0.5, 2), pos, 2, pan, envbuf)* env)
+		GrainBuf.ar(2, trig, dur, sndbuf, LFNoise1.kr(1).range(0.5, 2), pos, 2, pan, envbuf,512, 0.6)* env)
 }).add;
 )
 

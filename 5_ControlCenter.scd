@@ -6,13 +6,21 @@ Server.default.options.outDevice_("Built-in Output");
 
 
 //writing sound
+
 Tdef(\pencilFast).play;
+
+Tdef(\poem).play;
+
+
+
+~bgm.play;
+
+Tdef(\poem).stop;
 Tdef(\pencilFast).stop;
 
 
-Tdef(\poem).play;
-Tdef(\poem).stop;
 
+~bgm.stop;
 
 s.record;
 s.stop;
