@@ -54,6 +54,9 @@ void setup() {
 void draw() {
   
   println(frameRate);
+  
+  myMovie.jump(millis() / 1000f);
+
     //tint(0,153,204);
   //stroke(random(100,180),random(100,180),random(100,180) ,20);
   //strokeWeight(10);
