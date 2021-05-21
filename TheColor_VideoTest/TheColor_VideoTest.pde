@@ -37,11 +37,13 @@ void setup() {
   
  //fullScreen(P3D);
   size(1440, 800, P3D);
+  frameRate(23.98);
    //myMovie = new Movie(this, "TheColor_tImelapse_v2.mov");
-  myMovie = new Movie(this, "TheColor.mov");
+  myMovie = new Movie(this, "TheColorBackground.mov");
  
   myMovie.play();
-  //myMovie.speed(2);
+  //myMovie.speed(0.5);
+   println(myMovie.duration());
 
   pg = createGraphics(width, height, P3D);
   pg2 = createGraphics(width, height, P3D);
@@ -53,9 +55,9 @@ void setup() {
 
 void draw() {
   
-  println(frameRate);
+  //println(frameRate);
   
-  myMovie.jump(millis() / 1000.0);
+  //myMovie.jump(millis() / 1000.0);
 
     //tint(0,153,204);
   //stroke(random(100,180),random(100,180),random(100,180) ,20);

@@ -83,9 +83,9 @@ Tdef(\poem, { 1.do {
         n.sendMsg("/poem", "the essence of,".postln);
 		10.wait;
         n.sendMsg("/poem", "sympathy".postln);
-	    11.wait;
+	    10.wait;
 	    n.sendMsg("/poem", "and empathy.".postln);   //+5
-	    14.wait;
+	    11.wait;
  /*
         n.sendMsg("/poem", "As if"); //每个人都希望拥有幸福 30
 		7.wait;
@@ -109,7 +109,7 @@ Tdef(\poem, { 1.do {
 	    n.sendMsg("/poem",  "laugh at".postln);
 	    12.wait;
         n.sendMsg("/poem", "such things,".postln);
-	    14.wait;
+	    12.wait;
         n.sendMsg("/poem", "but I sigh".postln); //却无奈叹息 无力独自改变所有狭隘  40
 	    10.wait;
         n.sendMsg("/poem", "helplessly".postln);
@@ -117,9 +117,9 @@ Tdef(\poem, { 1.do {
 	    n.sendMsg("/poem",  "at my inability".postln);
 	    10.wait;
         n.sendMsg("/poem", "to change".postln);
-	    9.wait;
+	    10.wait;
         n.sendMsg("/poem", "the parochialism.".postln); //+5
-	    12.wait;
+	    11.wait;
 
 
         n.sendMsg("/poem", "If the color of".postln); //海水的颜色取决于天空的颜色 35
@@ -129,7 +129,7 @@ Tdef(\poem, { 1.do {
         n.sendMsg("/poem", "rely on that".postln);
 	    9.75.wait;
         n.sendMsg("/poem", "in the sky,".postln);
-	    12.75.wait;
+	    9.75.wait;
         n.sendMsg("/poem", "then".postln);  //眼睛的颜色取决于土地的颜色 39
 		9.75.wait;
 	    n.sendMsg("/poem",  "the eyes color".postln);
@@ -137,7 +137,7 @@ Tdef(\poem, { 1.do {
         n.sendMsg("/poem", "reflect that".postln);
 	    9.75.wait;
         n.sendMsg("/poem", "of the land.".postln);
-	    11.75.wait;
+	    9.75.wait;
 
         n.sendMsg("/poem", "If there is".postln); //没有边界 没有信仰 是否得以成全 38
 		7.6.wait;
@@ -148,7 +148,7 @@ Tdef(\poem, { 1.do {
         n.sendMsg("/poem", "can it".postln);
 	    7.6.wait;
         n.sendMsg("/poem", "be fulfilled?".postln);
-		9.6.wait;
+		8.6.wait;
 
 	    n.sendMsg("/poem", "If there is".postln); //没有颜色 没有光彩 是否就没有黑与白 40
 		7.5.wait;
@@ -161,7 +161,7 @@ Tdef(\poem, { 1.do {
         n.sendMsg("/poem", "no black?".postln);
 		7.5.wait;
 	    n.sendMsg("/poem", "and white?".postln);  //+5
-		9.5.wait;
+		8.5.wait;
 
 
 /*
@@ -218,7 +218,7 @@ Tdef(\poem, { 1.do {
         n.sendMsg("/poem", "can it".postln);
 	    6.6.wait;
         n.sendMsg("/poem", "be felt?".postln);
-		8.6.wait;
+		6.6.wait;
 
 	    n.sendMsg("/poem", "If there is".postln); //没有黑夜 没有光明 是否还能感知生命 42
 		8.4.wait;
@@ -229,6 +229,6 @@ Tdef(\poem, { 1.do {
         n.sendMsg("/poem", "can it ".postln);
 	    8.4.wait;
         n.sendMsg("/poem", "be alive?".postln);
-		10.4.wait;
+		8.4.wait;
 	}});
 )

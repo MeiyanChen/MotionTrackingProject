@@ -24,7 +24,7 @@ SynthDef(\bufferPlayer, {|buffer=0, out=0|
 }).add;
 
 
-SynthDef(\reverb, { |in, out, wet = 0.9,t60 = 1, damp = 0, size = 1.2, earlyDiff= 0.5, modDepth= 0.1, modFreq = 2.0, low = 1.0 , mid = 1.0, high = 1.0 |
+SynthDef(\reverb, { |in, out, wet = 0.1,t60 = 1, damp = 0, size = 1.1, earlyDiff= 0.707, modDepth= 0.1, modFreq = 1, low = 1.0 , mid = 1.0, high = 1.0 |
 	var drySignal, wetSignal, rev;
 	drySignal = In.ar(in, 2);
 	rev = JPverb.ar(drySignal,t60, damp, size, earlyDiff, modDepth, modFreq, low, mid, high);
